@@ -30,8 +30,8 @@
   "module": "dist/main.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "assets"
+    "assets",
+    "dist"
   ],
   "scripts": {
     "build": "tsc && vite build",

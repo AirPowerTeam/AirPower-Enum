@@ -26,42 +26,41 @@ cnpm install @airpower/enum
 ## 📖 如何使用
 
 ```ts
-import {Enum} from "@/airpower/enum";
+import { Enum } from '@/airpower/enum'
 
 class UserGender extends Enum<string> {
-    static MALE = new UserGender("MALE", "男");
-    static FEMALE = new UserGender("FEMALE", "女");
+  static MALE = new UserGender('MALE', '男')
+  static FEMALE = new UserGender('FEMALE', '女')
 }
 
 class UserStatus extends Enum {
-    static NORMAL = new UserStatus(0, "正常");
-    static DISABLED = new UserStatus(1, "禁用");
+  static NORMAL = new UserStatus(0, '正常')
+  static DISABLED = new UserStatus(1, '禁用')
 }
 
 // 扩展自定义属性
 
 class Platform extends Enum<number> {
-    static readonly MAC = new Platform(1, 'mac', 'apple.png')
-    static readonly WINDOWS = new Platform(2, 'windows', 'windows.png')
-    static readonly ANDROID = new Platform(3, 'android', 'android.png')
+  static readonly MAC = new Platform(1, 'mac', 'apple.png')
+  static readonly WINDOWS = new Platform(2, 'windows', 'windows.png')
+  static readonly ANDROID = new Platform(3, 'android', 'android.png')
 
-    icon!: string
+  icon!: string
 
-    constructor(key: number, label?: string, icon?: string) {
-        super(key, label)
-        if (icon) {
-            this.icon = icon
-        }
+  constructor(key: number, label?: string, icon?: string) {
+    super(key, label)
+    if (icon) {
+      this.icon = icon
     }
+  }
 
-    static getIcon(this: EnumConstructor<number, Platform>, key: number) {
-        return this.get(key)!.icon
-    }
+  static getIcon(this: EnumConstructor<number, Platform>, key: number) {
+    return this.get(key)!.icon
+  }
 }
 
 console.warn(Platform.getIcon(1))
 console.warn(Platform.MAC.icon)
-
 ```
 
 ## ⏰ 欢迎反馈
