@@ -7,9 +7,9 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'airpower',
+      name: 'main',
       formats: ['es'],
-      fileName: () => `airpower.js`,
+      fileName: () => `main.js`,
     },
     rollupOptions: {
       external: ['crypto-js', '@types/crypto-js'],
