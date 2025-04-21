@@ -9,10 +9,10 @@ export interface IEnum<K extends EnumKey = number> {
   /**
    * ### 字典的值
    */
-  key: K
+  readonly key: K
 
   /**
    * ### 字典的显示标题
    */
-  label?: string
+  readonly label?: string
 }
