@@ -75,15 +75,7 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
    * ### 判断 `Key` 是否相等
    * @param key `Key`
    */
-  equalsKey(key: K): boolean {
+  equalsKey(key: EnumKey): boolean {
     return this.key === key
-  }
-
-  /**
-   * ### 判断 `Key` 是否不相等
-   * @param key `Key`
-   */
-  notEqualsKey(key: K): boolean {
-    return this.key !== key
   }
 }
