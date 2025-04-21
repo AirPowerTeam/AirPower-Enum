@@ -10,12 +10,22 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
   /**
    * ### 枚举的值
    */
-  readonly key!: K
+  get key() { return this.#key }
+  #key!: K
+  #setkey(value: typeof this.key) {
+    this.#key = value
+    return this
+  }
 
   /**
    * ### 枚举的描述
    */
-  readonly label?: string
+  get label() { return this.#label }
+  #label?: string
+  #setLabel(value: typeof this.label) {
+    this.#label = value
+    return this
+  }
 
   /**
    * ### 实例化创建一个枚举项目
@@ -23,9 +33,9 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
    * @param label 枚举描述
    */
   constructor(key: K, label?: string) {
-    this.key = key
+    this.#setkey(key)
     if (label) {
-      this.label = label
+      this.#setLabel(label)
     }
   }
 

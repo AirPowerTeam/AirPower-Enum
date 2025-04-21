@@ -31,41 +31,32 @@ import { Enum } from './enum'
 
 // 普通数字枚举
 class UserStatus extends Enum {
-  static readonly NORMAL = new UserStatus(0, '正常')
-  static readonly DISABLED = new UserStatus(1, '禁用')
+  static NORMAL = new UserStatus(0, '正常')
+  static DISABLED = new UserStatus(1, '禁用')
 }
 
 // 字符串枚举（支持数字、字符串、布尔值）
 class UserGender extends Enum<string> {
-  static readonly MALE = new UserGender('MALE', '男')
-  static readonly FEMALE = new UserGender('FEMALE', '女')
+  static MALE = new UserGender('MALE', '男')
+  static FEMALE = new UserGender('FEMALE', '女')
 }
 
 // 扩展自定义属性
 class Platform extends Enum<number> {
-  static readonly MAC = new Platform(1, 'mac', 'apple.png')
-  static readonly WINDOWS = new Platform(2, 'windows', 'windows.png')
-  static readonly ANDROID = new Platform(3, 'android', 'android.png')
+  static MAC = new Platform(1, 'mac').#setIcon('apple.png')
+  static WINDOWS = new Platform(2, 'windows').#setIcon('windows.png')
+  static ANDROID = new Platform(3, 'android').#setIcon('android.png')
 
   // 自定义属性
-  icon!: string
-
-  // 1. 通过构造初始化（此时可以设置icon为readonly）
-  constructor(key: number, label?: string, icon?: string) {
-    super(key, label)
-    if (icon) {
-      this.icon = icon
-    }
-  }
-
-  // 2. 通过 set 方法初始化
-  setIcon(icon: string) {
-    this.icon = icon
+  get icon() { return this.#icon }
+  #icon!: string
+  #setIcon(value: string) {
+    this.#icon = value
     return this
   }
 
   static getIcon(this: EnumConstructor<number, Platform>, key: number) {
-    return this.get(key)!.icon
+    return this.get(key)?.icon
   }
 }
 
