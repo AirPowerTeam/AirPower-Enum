@@ -26,32 +26,42 @@ cnpm install @airpower/enum
 ## 📖 如何使用
 
 ```ts
-import { Enum } from '@/airpower/enum'
+import type { EnumConstructor } from './enum'
+import { Enum } from './enum'
 
-class UserGender extends Enum<string> {
-  static MALE = new UserGender('MALE', '男')
-  static FEMALE = new UserGender('FEMALE', '女')
+// 普通数字枚举
+class UserStatus extends Enum {
+  static readonly NORMAL = new UserStatus(0, '正常')
+  static readonly DISABLED = new UserStatus(1, '禁用')
 }
 
-class UserStatus extends Enum {
-  static NORMAL = new UserStatus(0, '正常')
-  static DISABLED = new UserStatus(1, '禁用')
+// 字符串枚举（支持数字、字符串、布尔值）
+class UserGender extends Enum<string> {
+  static readonly MALE = new UserGender('MALE', '男')
+  static readonly FEMALE = new UserGender('FEMALE', '女')
 }
 
 // 扩展自定义属性
-
 class Platform extends Enum<number> {
   static readonly MAC = new Platform(1, 'mac', 'apple.png')
   static readonly WINDOWS = new Platform(2, 'windows', 'windows.png')
   static readonly ANDROID = new Platform(3, 'android', 'android.png')
 
+  // 自定义属性
   icon!: string
 
+  // 1. 通过构造初始化（此时可以设置icon为readonly）
   constructor(key: number, label?: string, icon?: string) {
     super(key, label)
     if (icon) {
       this.icon = icon
     }
+  }
+
+  // 2. 通过 set 方法初始化
+  setIcon(icon: string) {
+    this.icon = icon
+    return this
   }
 
   static getIcon(this: EnumConstructor<number, Platform>, key: number) {
@@ -61,6 +71,7 @@ class Platform extends Enum<number> {
 
 console.warn(Platform.getIcon(1))
 console.warn(Platform.MAC.icon)
+console.warn(Platform.MAC.equalsKey(2))
 ```
 
 ## ⏰ 欢迎反馈
