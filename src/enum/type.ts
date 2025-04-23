@@ -9,5 +9,5 @@ export type EnumKey = string | number | boolean
  * ### 枚举类
  */
 export type EnumConstructor<K extends EnumKey = number, E extends Enum<K> = Enum<K>> = {
-  new(key: K, label?: string): E
+  new(...args: any[]): E
 } & typeof Enum<K>
