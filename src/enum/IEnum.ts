@@ -1,7 +1,7 @@
 import type { EnumKey } from './type'
 
 /**
- * # 标准枚举字典
+ * ### 标准枚举字典
  *
  * @author Hamm.cn
  */
