@@ -2,7 +2,7 @@ import type { IEnum } from './IEnum'
 import type { EnumConstructor, EnumKey } from './type'
 
 /**
- * # 枚举基类
+ * ### 枚举基类
  *
  * @author Hamm.cn
  */
