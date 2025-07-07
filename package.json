@@ -1,7 +1,7 @@
 {
   "name": "@airpower/enum",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "AirPower-Enum 是一个基于 TypeScript 的封装的类似 Java 枚举类的枚举字典处理工具。",
   "author": {
     "name": "Hamm",
@@ -41,12 +41,12 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.11.0",
-    "@types/node": "^22.13.14",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.0",
-    "vite-plugin-dts": "^4.5.3"
+    "@antfu/eslint-config": "^4.16.2",
+    "@types/node": "^24.0.10",
+    "eslint": "^9.30.1",
+    "typescript": "^5.8.3",
+    "vite": "6.3.4",
+    "vite-plugin-dts": "^4.5.4"
   },
   "publishConfig": {
     "access": "public"
