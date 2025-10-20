@@ -34,7 +34,7 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
    * @param key `Key`
    */
   static get<K extends EnumKey = number, E extends Enum<K> = Enum<K>>(this: EnumConstructor<K, E>, key: K): E | null {
-    return this.toArray().find((item: E) => item.key === key) || null
+    return this.toArray().find((item: E): boolean => item.key === key) || null
   }
 
   /**
@@ -43,7 +43,7 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
    * @param defaultLabel 默认标签
    */
   static getLabel<K extends EnumKey = number, E extends Enum<K> = Enum<K>>(this: EnumConstructor<K, E>, key: K, defaultLabel = '-'): string {
-    const item = this.get(key)
+    const item: E | null = this.get(key)
     return item?.label || defaultLabel
   }
 
@@ -52,7 +52,7 @@ export class Enum<K extends EnumKey = number> implements IEnum<K> {
    * @returns 枚举数组
    */
   static toArray<K extends EnumKey = number, E extends Enum<K> = Enum<K>>(this: EnumConstructor<K, E>): E[] {
-    return Object.values(this).filter((item): item is E => item instanceof this)
+    return Object.values(this).filter((item: E): item is E => item instanceof this)
   }
 
   /**
