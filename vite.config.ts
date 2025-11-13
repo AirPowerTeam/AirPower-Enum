@@ -9,13 +9,13 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'AirPowerEnum',
       formats: ['es', 'cjs', 'umd'],
-      fileName: format => `airpower-enum.${format}.js`,
+      fileName: format => `main.${format}.js`,
     },
     rollupOptions: {
       external: [],
       output: {
         globals: {
-          'airpower-enum': 'AirPowerEnum',
+          main: 'AirPowerEnum',
         },
       },
     },
