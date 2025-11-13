@@ -26,6 +26,12 @@
     "oop",
     "class"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/main.js"
+    }
+  },
   "main": "dist/main.js",
   "module": "dist/main.js",
   "types": "dist/index.d.ts",

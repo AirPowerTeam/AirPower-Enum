@@ -12,7 +12,7 @@ export default defineConfig({
       fileName: () => `main.js`,
     },
     rollupOptions: {
-      external: ['crypto-js', '@types/crypto-js'],
+      external: [],
     },
   },
   plugins: [dts()],
