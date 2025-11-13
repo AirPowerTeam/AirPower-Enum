@@ -7,12 +7,17 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'main',
-      formats: ['es', 'cjs'],
-      fileName: format => `main.${format}.js`,
+      name: 'AirPowerEnum',
+      formats: ['es', 'cjs', 'umd'],
+      fileName: format => `airpower-enum.${format}.js`,
     },
     rollupOptions: {
       external: [],
+      output: {
+        globals: {
+          'airpower-enum': 'AirPowerEnum',
+        },
+      },
     },
   },
   plugins: [dts()],
