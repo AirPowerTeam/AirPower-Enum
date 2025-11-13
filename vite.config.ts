@@ -8,8 +8,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'main',
-      formats: ['es'],
-      fileName: () => `main.js`,
+      formats: ['es', 'cjs'],
+      fileName: format => `main.${format}.js`,
     },
     rollupOptions: {
       external: [],
