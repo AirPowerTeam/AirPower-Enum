@@ -7,17 +7,12 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'AirPowerEnum',
-      formats: ['es', 'cjs', 'umd'],
-      fileName: format => `main.${format}.js`,
+      name: 'main',
+      formats: ['es'],
+      fileName: () => `main.js`,
     },
     rollupOptions: {
-      external: [],
-      output: {
-        globals: {
-          main: 'AirPowerEnum',
-        },
-      },
+      external: ['crypto-js', '@types/crypto-js'],
     },
   },
   plugins: [dts()],
