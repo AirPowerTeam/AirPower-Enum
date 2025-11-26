@@ -3,6 +3,15 @@
 </p>
 
 <p align="center">
+<a href="https://www.npmjs.com/@airpower/enum">
+<img src="https://img.shields.io/npm/v/@airpower/enum"/>
+</a>
+<a href="https://www.npmjs.com/@airpower/enum">
+<img src="https://img.shields.io/npm/dm/@airpower/enum"/>
+</a>
+</p>
+
+<p align="center">
 <a href="https://github.com/AirPowerTeam/AirPower-Enum">Github</a> /
 <a href="https://gitee.com/air-power/AirPower-Enum">Gitee</a> /
 <a href="https://www.npmjs.com/package/@airpower/enum">NPM</a>
@@ -26,8 +35,8 @@ cnpm install @airpower/enum
 ## 📖 如何使用
 
 ```ts
-import type { EnumConstructor } from './enum'
-import { Enum } from './enum'
+import type {EnumConstructor} from './enum'
+import {Enum} from './enum'
 
 // 普通数字枚举
 class UserStatus extends Enum {
