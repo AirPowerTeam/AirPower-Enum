@@ -35,8 +35,8 @@ cnpm install @airpower/enum
 ## 📖 如何使用
 
 ```ts
-import type {EnumConstructor} from './enum'
-import {Enum} from './enum'
+import type { EnumConstructor } from './enum'
+import { Enum } from './enum'
 
 // 普通数字枚举
 class UserStatus extends Enum {
