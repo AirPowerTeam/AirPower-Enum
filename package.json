@@ -34,7 +34,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "eslint && tsc && vite build"
+    "build": "eslint src && tsc && vite build"
   },
   "dependencies": {},
   "devDependencies": {

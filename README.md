@@ -104,41 +104,41 @@ pnpm add @airpower/enum
 #### 数字枚举
 
 ```typescript
-import {Enum} from '@airpower/enum'
+import { Enum } from '@airpower/enum'
 
 class UserStatus extends Enum {
-    static readonly NORMAL = new UserStatus(0, '正常')
-    static readonly DISABLED = new UserStatus(1, '禁用')
+  static readonly NORMAL = new UserStatus(0, '正常')
+  static readonly DISABLED = new UserStatus(1, '禁用')
 }
 
 // 使用示例
-console.log(UserStatus.NORMAL.key)      // 输出：0
-console.log(UserStatus.NORMAL.label)    // 输出：正常
+console.log(UserStatus.NORMAL.key) // 输出：0
+console.log(UserStatus.NORMAL.label) // 输出：正常
 ```
 
 #### 字符串枚举
 
 ```typescript
-import {Enum} from '@airpower/enum'
+import { Enum } from '@airpower/enum'
 
 class UserGender extends Enum<string> {
-    static readonly MALE = new UserGender('MALE', '男')
-    static readonly FEMALE = new UserGender('FEMALE', '女')
+  static readonly MALE = new UserGender('MALE', '男')
+  static readonly FEMALE = new UserGender('FEMALE', '女')
 }
 
 // 使用示例
-console.log(UserGender.MALE.key)        // 输出：MALE
-console.log(UserGender.FEMALE.label)    // 输出：女
+console.log(UserGender.MALE.key) // 输出：MALE
+console.log(UserGender.FEMALE.label) // 输出：女
 ```
 
 #### 布尔值枚举
 
 ```typescript
-import {Enum} from '@airpower/enum'
+import { Enum } from '@airpower/enum'
 
 class SwitchState extends Enum<boolean> {
-    static readonly ON = new SwitchState(true, '开启')
-    static readonly OFF = new SwitchState(false, '关闭')
+  static readonly ON = new SwitchState(true, '开启')
+  static readonly OFF = new SwitchState(false, '关闭')
 }
 ```
 
@@ -178,8 +178,8 @@ K, label ? : string
 判断实例的 `key` 是否与传入的键值相等。
 
 ```typescript
-UserStatus.NORMAL.equalsKey(0)  // true
-UserStatus.NORMAL.equalsKey(1)  // false
+UserStatus.NORMAL.equalsKey(0) // true
+UserStatus.NORMAL.equalsKey(1) // false
 ```
 
 ---
@@ -192,7 +192,7 @@ UserStatus.NORMAL.equalsKey(1)  // false
 
 ```typescript
 const status = UserStatus.get(0)
-console.log(status?.label)  // 输出：正常
+console.log(status?.label) // 输出：正常
 ```
 
 **泛型参数：**
@@ -207,9 +207,9 @@ console.log(status?.label)  // 输出：正常
 获取指定键值的枚举标签，如不存在则返回默认值。
 
 ```typescript
-UserStatus.getLabel(0)              // 输出：正常
-UserStatus.getLabel(999, '未知')     // 输出：未知
-UserStatus.getLabel(999)            // 输出：-
+UserStatus.getLabel(0) // 输出：正常
+UserStatus.getLabel(999, '未知') // 输出：未知
+UserStatus.getLabel(999) // 输出：-
 ```
 
 **参数说明：**
@@ -230,8 +230,8 @@ const allStatus = UserStatus.toArray()
 // 输出：[UserStatus { key: 0, label: '正常' }, UserStatus { key: 1, label: '禁用' }]
 
 // 常用于遍历或下拉选项
-allStatus.forEach(item => {
-    console.log(`${item.key}: ${item.label}`)
+allStatus.forEach((item) => {
+  console.log(`${item.key}: ${item.label}`)
 })
 ```
 
@@ -244,28 +244,30 @@ allStatus.forEach(item => {
 通过扩展构造函数，可以为枚举添加自定义属性：
 
 ```typescript
-import {Enum} from '@airpower/enum'
-import type {EnumConstructor} from '@airpower/enum'
+import type { EnumConstructor } from '@airpower/enum'
+import { Enum } from '@airpower/enum'
 
 class Platform extends Enum<number> {
-    static readonly MAC = new Platform(1, 'macOS', 'apple.png', '#000')
-    static readonly WINDOWS = new Platform(2, 'Windows', 'windows.png', '#0078D4')
-    static readonly ANDROID = new Platform(3, 'Android', 'android.png', '#3DDC84')
-    static readonly LINUX = new Platform(4, 'Linux', 'linux.png', '#FCC624')
+  static readonly MAC = new Platform(1, 'macOS', 'apple.png', '#000')
+  static readonly WINDOWS = new Platform(2, 'Windows', 'windows.png', '#0078D4')
+  static readonly ANDROID = new Platform(3, 'Android', 'android.png', '#3DDC84')
+  static readonly LINUX = new Platform(4, 'Linux', 'linux.png', '#FCC624')
 
-    // 自定义属性
-    icon!: string
-    color!: string
+  // 自定义属性
+  icon!: string
+  color!: string
 
-    constructor(key: number, label?: string, icon?: string, color?: string) {
-        super(key, label)
-        if (icon) this.icon = icon
-        if (color) this.color = color
-    }
+  constructor(key: number, label?: string, icon?: string, color?: string) {
+    super(key, label)
+    if (icon)
+      this.icon = icon
+    if (color)
+      this.color = color
+  }
 }
 
 // 使用自定义属性
-console.log(Platform.MAC.icon)      // 输出：apple.png
+console.log(Platform.MAC.icon) // 输出：apple.png
 console.log(Platform.WINDOWS.color) // 输出：#0078D4
 ```
 
@@ -277,37 +279,37 @@ console.log(Platform.WINDOWS.color) // 输出：#0078D4
 
 ```typescript
 class Priority extends Enum<number> {
-    static readonly LOW = new Priority(1, '低优先级')
-    static readonly MEDIUM = new Priority(2, '中优先级')
-    static readonly HIGH = new Priority(3, '高优先级')
-    static readonly CRITICAL = new Priority(4, '紧急')
+  static readonly LOW = new Priority(1, '低优先级')
+  static readonly MEDIUM = new Priority(2, '中优先级')
+  static readonly HIGH = new Priority(3, '高优先级')
+  static readonly CRITICAL = new Priority(4, '紧急')
 
-    // 实例方法：判断是否为高优先级
-    isHighPriority(): boolean {
-        return this.key >= 3
-    }
+  // 实例方法：判断是否为高优先级
+  isHighPriority(): boolean {
+    return this.key >= 3
+  }
 
-    // 实例方法：获取优先级图标
-    getIcon(): string {
-        const icons: Record<number, string> = {
-            1: '🟢',
-            2: '🟡',
-            3: '🟠',
-            4: '🔴'
-        }
-        return icons[this.key] || '⚪'
+  // 实例方法：获取优先级图标
+  getIcon(): string {
+    const icons: Record<number, string> = {
+      1: '🟢',
+      2: '🟡',
+      3: '🟠',
+      4: '🔴'
     }
+    return icons[this.key] || '⚪'
+  }
 
-    // 静态方法：获取所有高优先级项
-    static getHighPriorities(): Priority[] {
-        return this.toArray().filter(p => p.isHighPriority())
-    }
+  // 静态方法：获取所有高优先级项
+  static getHighPriorities(): Priority[] {
+    return this.toArray().filter(p => p.isHighPriority())
+  }
 }
 
 // 使用示例
-console.log(Priority.HIGH.getIcon())           // 输出：🟠
-console.log(Priority.LOW.isHighPriority())     // 输出：false
-console.log(Priority.getHighPriorities())      // 输出：[HIGH, CRITICAL]
+console.log(Priority.HIGH.getIcon()) // 输出：🟠
+console.log(Priority.LOW.isHighPriority()) // 输出：false
+console.log(Priority.getHighPriorities()) // 输出：[HIGH, CRITICAL]
 ```
 
 ---
@@ -318,21 +320,21 @@ console.log(Priority.getHighPriorities())      // 输出：[HIGH, CRITICAL]
 
 ```typescript
 class Config extends Enum<string> {
-    static readonly DEBUG = new Config('DEBUG', '调试模式')
-    static readonly RELEASE = new Config('RELEASE', '发布模式')
+  static readonly DEBUG = new Config('DEBUG', '调试模式')
+  static readonly RELEASE = new Config('RELEASE', '发布模式')
 
-    enabled!: boolean
-    timeout!: number
+  enabled!: boolean
+  timeout!: number
 
-    setEnabled(enabled: boolean): this {
-        this.enabled = enabled
-        return this
-    }
+  setEnabled(enabled: boolean): this {
+    this.enabled = enabled
+    return this
+  }
 
-    setTimeout(timeout: number): this {
-        this.timeout = timeout
-        return this
-    }
+  setTimeout(timeout: number): this {
+    this.timeout = timeout
+    return this
+  }
 }
 
 // 链式调用
@@ -346,33 +348,34 @@ Config.DEBUG.setEnabled(true).setTimeout(3000)
 使用 `EnumConstructor` 类型来编写泛型工具函数：
 
 ```typescript
-import {Enum, type EnumConstructor} from '@airpower/enum'
+import type { EnumConstructor } from '@airpower/enum'
+import { Enum } from '@airpower/enum'
 
 /**
  * 通用的枚举选择器组件（以 Vue 3 为例）
  */
 function useEnumSelector<K extends string | number | boolean, E extends Enum<K>>(
-    EnumClass: EnumConstructor<K, E>
+  EnumClass: EnumConstructor<K, E>
 ) {
-    const options = EnumClass.toArray()
+  const options = EnumClass.toArray()
 
-    const getLabel = (key: K): string => {
-        return EnumClass.getLabel(key, '未知选项')
-    }
+  const getLabel = (key: K): string => {
+    return EnumClass.getLabel(key, '未知选项')
+  }
 
-    const isSelected = (current: K, target: K): boolean => {
-        return current === target
-    }
+  const isSelected = (current: K, target: K): boolean => {
+    return current === target
+  }
 
-    return {
-        options,
-        getLabel,
-        isSelected
-    }
+  return {
+    options,
+    getLabel,
+    isSelected
+  }
 }
 
 // 使用示例
-const {options, getLabel} = useEnumSelector(UserStatus)
+const { options, getLabel } = useEnumSelector(UserStatus)
 ```
 
 ---
@@ -395,8 +398,8 @@ type EnumKey = string | number | boolean
 
 ```typescript
 interface IEnum<K extends EnumKey = number> {
-    key: K
-    label?: string
+  key: K
+  label?: string
 }
 ```
 
@@ -408,7 +411,7 @@ interface IEnum<K extends EnumKey = number> {
 
 ```typescript
 type EnumConstructor<K extends EnumKey = number, E extends Enum<K> = Enum<K>> = {
-    new(...args: any[]): E
+  new(...args: any[]): E
 } & typeof Enum<K>
 ```
 
@@ -543,7 +546,7 @@ const json = JSON.stringify(UserStatus.NORMAL)
 // 输出：{"key":0,"label":"正常"}
 
 // 反序列化
-const data = {key: 0, label: '正常'}
+const data = { key: 0, label: '正常' }
 const status = UserStatus.get(data.key)
 ```
 
